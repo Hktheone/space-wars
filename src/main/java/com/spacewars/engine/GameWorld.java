@@ -155,7 +155,11 @@ public class GameWorld {
         return missed.get();
     }
 
-    /** Enemies currently frozen - each one is a worker permanently held by a task doing nothing. */
+    /**
+     * Enemies currently frozen - each one is a worker held by a task that's sleeping instead of
+     * falling. They self-recover (thaw) after a few seconds unless killed first; this count is a
+     * live snapshot of how many workers are tied up that way right now, not a permanent loss.
+     */
     public long stuckEnemyCount() {
         return enemies.stream().filter(e -> !e.isDestroyed() && e.isFrozen()).count();
     }

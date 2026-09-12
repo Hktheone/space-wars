@@ -64,7 +64,7 @@ public class ThreadPoolPanel extends JPanel {
 
         if (stuckCount >= 0) {
             g2.setColor(stuckCount > 0 ? new Color(0xff7043) : Color.LIGHT_GRAY);
-            g2.drawString("stuck (frozen forever): " + stuckCount, 10, y);
+            g2.drawString("stuck (sleeping): " + stuckCount, 10, y);
             y += 16;
         }
 

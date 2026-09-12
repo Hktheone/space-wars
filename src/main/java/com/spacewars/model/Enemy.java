@@ -11,8 +11,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>RED enemies die on the first bullet hit. BLUE enemies freeze on the first hit instead:
  * {@link #run()} stops advancing y and just keeps sleeping in place, so the worker thread is
  * genuinely parked (repeated {@code Thread.sleep}, i.e. real {@code TIMED_WAITING}) rather than
- * finishing. A second hit while frozen destroys it and finally frees the worker. A frozen
- * enemy that's never hit again never releases its worker for the rest of the game.
+ * finishing. From there, exactly one of two things happens: a second hit while frozen destroys
+ * it and frees the worker immediately, or - if it's left alone - it self-thaws after
+ * {@link #FREEZE_DURATION_MS} and resumes falling on its own, at which point the whole cycle can
+ * repeat. Either way the worker is held, doing no useful work, for the entire freeze window -
+ * a deliberate, visible demo of a task that's blocked rather than finished.
  */
 public class Enemy extends Entity implements Runnable {
 
