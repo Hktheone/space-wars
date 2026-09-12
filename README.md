@@ -5,15 +5,9 @@ built to make a bounded `ThreadPoolExecutor` visible: how it schedules work, que
 load, retires idle threads, and refuses tasks it can't handle. The game is the excuse; the
 sidebar showing live worker state is the point.
 
-## Demo video
+## Demo
 
-📹 **[Watch the demo](docs/demo.mp4)**
-
-*(drop your recording at `docs/demo.mp4` — that's the path this link and the embed below point at)*
-
-<video src="docs/demo.mp4" controls width="640">
-  Your browser can't play this video inline — use the link above instead.
-</video>
+![Space Wars demo](docs/demo.gif)
 
 ## The core idea: tasks, not threads
 
